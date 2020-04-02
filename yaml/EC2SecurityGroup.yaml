@@ -1,0 +1,19 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Grupo de seguridad asociado a un vpc de prueba creado
+Resources: 
+  secGroupRefencingVpc:
+    Type: AWS::EC2::SecurityGroup
+    Properties: 
+      GroupDescription: Grupo de seguridad relacionado con un vpc
+      GroupName: SgWithVpc
+      VpcId: vpc-02a8733284f924913
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 192.168.0.0/28
+      SecurityGroupEgress:
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 192.168.0.0/28

@@ -1,0 +1,18 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "AWS CloudFormation Sample Template with php",
+    "Resources": {
+        "Ec2WithPhp": {
+            "Type": "AWS::EC2::Instance",
+            "Properties": {
+                "ImageId": "ami-0fc61db8544a617ed",
+                "InstanceType": "t2.micro",
+                "SecurityGroupIds": [
+                    "sg-0ac6334a8c0c5ce00"
+                ],
+                "KeyName": "santiagoKeyUsEast1",
+                "UserData": "#!/bin/bash yum install php -y"
+            }
+        }
+    }
+}

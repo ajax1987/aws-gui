@@ -1,0 +1,29 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description:
+  Plantilla que tiene subnet que referencia a vpc
+Metadata: 
+  SubnetOutputTest:
+    Description: subnet con output
+Parameters: 
+  VpcOutputTestParameter:
+    Type: String
+    Default: VpcOutputTest
+    Description: Este es el valor de entrada VpcOutputTestParameter
+Resources: 
+  SubnetOutputTest:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId:
+        Fn::ImportValue:
+          !Sub "${VpcOutputTestParameter}-VPCID"
+      CidrBlock: 10.0.0.0/24
+      Tags:
+        - Key: Name
+          Value: SubnetOutputTest
+Outputs:
+  SubnetOutputTestOutput:
+    Description: Output del stack SubnetOutputTestOutput 
+    Value: !Ref SubnetOutputTest
+    Export:
+      Name: !Sub "${AWS::StackName}-VPCID"

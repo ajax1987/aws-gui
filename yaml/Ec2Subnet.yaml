@@ -1,0 +1,12 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Subnet asociada a la vpc de testing
+Resources: 
+  SubnetRefmyVPC:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: us-east-1a
+      VpcId: vpc-05afbc3c6880c5759
+      CidrBlock: 192.168.0.0/28
+      Tags:
+        - Key: foo
+          Value: bar

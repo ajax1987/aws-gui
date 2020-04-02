@@ -1,0 +1,13 @@
+{
+  "Version":"2012-10-17",
+  "Statement":[{
+      "Effect":"Deny",
+      "Action":[
+          "cloudformation:UpdateStack",
+          "cloudformation:DeleteStack"
+      ],
+      "Resource":"arn:aws:cloudformation:us-east-2:961903627607:stack/StackS3Simple/*"
+  }]
+}
+
+

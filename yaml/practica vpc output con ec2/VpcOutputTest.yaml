@@ -1,0 +1,22 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description:
+  Plantilla con salida output
+Metadata: 
+  VpcOutputTest:
+    Description: Vpc con un output para que los demas stack importen este recurso
+Resources: 
+  VpcOutputTest:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.0.0.0/16
+      EnableDnsSupport: true
+      Tags:
+        - Key: Name
+          Value: VpcOutputTest
+Outputs:
+  VpcOutputTestOutput:
+    Description: Output del vpc
+    Value: !Ref VpcOutputTest
+    Export:
+      Name: !Sub "${AWS::StackName}-VPCID"

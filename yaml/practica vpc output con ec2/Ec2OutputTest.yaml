@@ -1,0 +1,44 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description:
+  Plantilla ec2 relacionado a subnet
+Metadata: 
+  Ec2OutputTest:
+    Description: Instancia ec2 que referencia a subnet SubnetOutputTest
+Parameters: 
+  SubnetOutputTestParameter:
+    Type: String
+    Default: SubnetOutputTest
+    Description: Stack llamado SubnetOutputTest
+  InstanceTypeParameter:
+    Type: String
+    Default: t2.micro
+    AllowedValues:
+      - t2.micro
+    Description: Lista de instancias. por defecto solo esta la instancia gratuita t2.micro
+  ImageIdParameter:
+    Type: String
+    Default: ami-0fc61db8544a617ed
+    AllowedValues:
+      - ami-0fc61db8544a617ed
+      - ami-09a5b0b7edf08843d
+    Description: lista de imagenes. por defecto esta ami-0fc61db8544a617ed
+Resources: 
+  Ec2OutputTest:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: !Ref ImageIdParameter
+      InstanceType: !Ref InstanceTypeParameter
+      SubnetId:
+        Fn::ImportValue:
+          !Sub "${SubnetOutputTestParameter}-VPCID"
+      Tags:
+        - Key: Name
+          Value: Ec2OutputTest
+Outputs:
+  Ec2OutputTestOutput:
+    Description: The output of Ec2OutputTest
+    Value: !Ref Ec2OutputTest
+    Export:
+      Name: !Sub "${AWS::StackName}-VPCID"
+    

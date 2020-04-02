@@ -1,0 +1,10 @@
+Amazon Linux 2 AMI (HVM), SSD Volume Type
+- ami-0fc61db8544a617ed
+
+
+Amazon Linux AMI 2018.03.0 (HVM), SSD Volume Type 
+- ami-09a5b0b7edf08843d
+
+
+Red Hat Enterprise Linux 8 (HVM), SSD Volume Type 
+- ami-0c322300a1dd5dc79 (64-bit x86)

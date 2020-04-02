@@ -1,0 +1,15 @@
+{
+    "Resources": {
+        "Ec2RefKeySg": {
+            "Type": "AWS::EC2::Instance",
+            "Properties": {
+                "KeyName": "santiagoKeyUsEast1",
+                "ImageId": "ami-0fc61db8544a617ed",
+                "InstanceType": "t2.micro",
+                "SecurityGroupIds": [
+                    "sg-0ac6334a8c0c5ce00"
+                ]
+            }
+        }
+    }
+}

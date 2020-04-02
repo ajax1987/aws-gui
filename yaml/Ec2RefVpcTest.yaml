@@ -1,0 +1,29 @@
+Resources:
+  NetworkInterfaceTest:
+    Type: AWS::EC2::NetworkInterface
+    Properties:
+      Tags:
+        - Key: foo
+          Value: bar
+      Description: des of NetworkInterface.
+      SourceDestCheck: "false"
+      GroupSet:
+        - sg-049e350742e77b968
+      SubnetId: subnet-0c76cff31de5ed19a
+      # PrivateIpAddress: 10.0.0.2
+  Ec2RefVpcTest:
+    Type: AWS::EC2::Instance
+    Properties:
+      KeyName: santiagoKeyUsEast1
+      ImageId: ami-0fc61db8544a617ed
+      InstanceType: t2.micro
+      NetworkInterfaces:
+        - NetworkInterfaceId:
+            Ref: NetworkInterfaceTest
+          DeviceIndex: "0"
+      # NetworkInterfaces:
+      #   - GroupSet:
+      #       - sg-0aa00cbb2861e952d
+      #     AssociatePublicIpAddress: true
+      #     DeviceIndex: 0
+      #     SubnetId: subnet-0d3056335464e53f8

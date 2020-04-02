@@ -1,0 +1,33 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description:
+  Plantilla prueba mappings
+Metadata: 
+  Ec2MappingTest:
+    Description: Instancia ec2 usando parametro findmap
+Parameters: 
+  InstanceTypeParameter:
+    type: String
+    Default: t2.micro
+    AllowedValues:
+      - t2.micro
+Mappings: 
+  RegionMap: 
+      us-east-1:
+        HVM64: ami-0fc61db8544a617ed
+      us-east-2:
+        HVM64: ami-09a5b0b7edf08843d
+Resources: 
+  Ec2MappingTest:
+    Type: AWS::EC2::Instance
+    Properties: 
+      ImageId: !FindInMap [RegionMap, !Ref "AWS::Region", HVM64]
+      InstanceType: !Ref InstanceTypeParameter
+      Tags:
+        - Key: Name
+          Value: Ec2MappingTest
+Outputs:
+  Ec2MappingTestOutput:
+    Description: El output de Ec2MappingTestOutput
+    value: !Ref Ec2MappingTest #saca el id del recurso Ec2MappingTest
+    Export: !Sub "${AWS::StackName}-VPCID"

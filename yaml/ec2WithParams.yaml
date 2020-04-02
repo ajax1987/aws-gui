@@ -1,0 +1,40 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: plantilla ec2 con parametros
+Metadata:
+  Instancias:
+    Descripcion: Una instancia ec2 que lleva parametros
+Parameters:
+  InstanceTypeParameter:
+    Type: String
+    Default: t2.micro
+    AllowedValues:
+      - t2.micro
+    Description: Enter t2.micro. Default is t2.micro.
+  ImageIdParameter:
+    Type: String
+    Default: ami-0fc61db8544a617ed
+    AllowedValues:
+      - ami-0fc61db8544a617ed
+      - ami-09a5b0b7edf08843d
+    Description: Enter ami-0fc61db8544a617ed. Default is ami-0fc61db8544a617ed.
+  SecurityGroupIdsParameter:
+    Type: CommaDelimitedList
+    Default: 
+      sg-0ac6334a8c0c5ce00
+    AllowedValues:
+      - sg-012b1764a2557d932, 
+      - sg-067798cdfef250885
+      - sg-0ac6334a8c0c5ce00
+      - sg-f0ead1dd
+    Description: Enter sg-0ac6334a8c0c5ce00. Default is sg-0ac6334a8c0c5ce00.
+Resources:
+  Ec2WithParams:
+    Type: AWS::EC2::Instance
+    Properties:
+      KeyName: santiagoKeyUsEast1
+      ImageId:
+        Ref: ImageIdParameter
+      InstanceType:
+        Ref: InstanceTypeParameter
+      SecurityGroupIds:
+        Ref: SecurityGroupIdsParameter

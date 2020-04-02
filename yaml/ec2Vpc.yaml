@@ -1,0 +1,24 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Plantilla vpc
+Metadata:
+  VpcTest:
+    Description: Un VPC solo para pruebas. descripcion del metadata
+  SubnetPublicTest:
+    Description: Subred asociada al vpc de prueba
+Resources: 
+  VpcTest:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.0.0.0/16
+      EnableDnsSupport: 'false'
+      EnableDnsHostnames: 'false'
+      Tags:
+      - Key: foo
+        Value: bar
+  SubnetVpcTest:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: us-east-1a
+      VpcId:
+        Ref: VpcTest
+      CidrBlock: 192.168.0.0/28
